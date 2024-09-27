@@ -1,13 +1,13 @@
 const express = require("express")
 const cors = require("cors")
 const app = express();
-const Todos = require("./models/Todos")
+const Todos = require("./models/Todo")
 const mongoose = require("mongoose")
 require("dotenv").config()
 app.use(express.json)
 mongoose.connect(`${process.env.MONGODB_API_KEY}`)
 app.use(cors())
-app.get("/todos", async (req, res) =>{
+app.get("/todo", async (req, res) =>{
     const todos = await Todos.find();
     res.json({todos:todos});
 })
