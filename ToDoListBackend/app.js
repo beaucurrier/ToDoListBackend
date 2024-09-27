@@ -7,7 +7,7 @@ require("dotenv").config()
 app.use(express.json)
 mongoose.connect(`${process.env.MONGODB_API_KEY}`)
 app.use(cors())
-app.get("todos", async (req, res) =>{
+app.get("/todos", async (req, res) =>{
     const todos = await Todos.find();
     res.json({todos:todos});
 })
@@ -17,7 +17,7 @@ app.post("./add-item", async (req, res) => {
 app.post("./edit-item/:id", async (req, res) => {
     await Todos.findOneAndUpdate({id:req.params.id}, req.body)
 })
-app.post("./delete-item", async (req, res) => {
+app.delete("./delete-item/:id", async (req, res) => {
     await Todos.deleteOne({id:req.params.id})
 })
 app.listen(5000,() =>{
