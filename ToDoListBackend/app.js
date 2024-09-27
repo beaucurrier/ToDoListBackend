@@ -5,7 +5,7 @@ const Todos = require("./models/Todo")
 const mongoose = require("mongoose")
 require("dotenv").config()
 app.use(express.json)
-mongoose.connect(`${process.env.MONGODB_API_KEY}`)
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`)
 app.use(cors())
 app.get("/todo", async (req, res) =>{
     const todos = await Todos.find();
