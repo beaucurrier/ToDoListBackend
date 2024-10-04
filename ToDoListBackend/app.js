@@ -4,7 +4,7 @@ const app = express();
 const Todos = require("./models/Todo")
 const mongoose = require("mongoose")
 require("dotenv").config()
-app.use(express.json)
+app.use(express.json())
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`)
 const corsOptions = {origin: 'https://react-projects-ten-lemon.vercel.app/', optionsSuccessStatus: 200}
 app.use(cors(corsOptions))
