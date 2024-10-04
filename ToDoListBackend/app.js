@@ -8,6 +8,18 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mo
 const corsOptions = {origin: 'https://react-projects-ten-lemon.vercel.app/', optionsSuccessStatus: 200}
 app.use(cors(corsOptions))
 app.use(express.json())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'react-projects-ten-lemon.vercel.app');
+    res.header('Access-Control-Allow-Methods', "GET,OPTIONS,PATCH,DELETE,POST,PUT");
+    res.header('Access-Control-Allow-Headers', "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
+    res.header('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+    };
+    next();
+    });
+
 app.get("/todos", async (req, res) =>{
     const todos = await Todos.find();
     res.json({todos:todos});
