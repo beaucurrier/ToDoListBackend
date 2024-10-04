@@ -8,7 +8,7 @@ app.use(express.json)
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`)
 const corsOptions = {origin: 'https://react-projects-ten-lemon.vercel.app/', optionsSuccessStatus: 200}
 app.use(cors(corsOptions))
-app.get("/todo", async (req, res) =>{
+app.get("/todos", async (req, res) =>{
     const todos = await Todos.find();
     res.json({todos:todos});
 })
