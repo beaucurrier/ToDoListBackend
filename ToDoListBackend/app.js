@@ -12,13 +12,19 @@ app.get("/todo", async (req, res) =>{
     res.json({todos:todos});
 })
 app.post("./add-item", async (req, res) => {
-    await Todos.create(req.body)
+    const newToDo = await Todos.create(req.body)
+    res.json(newToDo)
 })
 app.post("./edit-item/:id", async (req, res) => {
-    await Todos.findOneAndUpdate({id:req.params.id}, req.body)
+    const updatedTodo = await Todos.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { text: req.body.text, completed: req.body.completed } }, // Update both task and completed status
+        { new: true }
+      );
+      res.json(updatedTodo);
 })
 app.delete("./delete-item/:id", async (req, res) => {
-    await Todos.deleteOne({id:req.params.id})
+    await Todos.deleteOne({_id:req.params.id})
 })
 app.listen(5000,() =>{
     console.log('server is running on Port 5000')
