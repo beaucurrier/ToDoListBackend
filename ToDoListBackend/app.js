@@ -6,15 +6,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`)
 const corsOptions = {origin: 'https://react-projects-ten-lemon.vercel.app', optionsSuccessStatus: 200}
-app.use(cors({
-
-    origin: 'https://react-projects-ten-lemon.vercel.app',
-  
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  
-    allowedHeaders: ['Content-Type']
-  
-  }));
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'react-projects-ten-lemon.vercel.app');
