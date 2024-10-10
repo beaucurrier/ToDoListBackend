@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const Todos = require("./models/Todos");
+const Todos = require('./models/Todo');
 const mongoose = require("mongoose");
 require("dotenv").config();
 mongoose.connect(`${process.env.MONGODB_API_KEY}`);
