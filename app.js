@@ -7,7 +7,7 @@ require("dotenv").config();
 mongoose.connect(`${process.env.MONGODB_API_KEY}`);
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
-  origin: "https://steventodo.netlify.app",
+  origin: "react-projects-ten-lemon.vercel.app",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
