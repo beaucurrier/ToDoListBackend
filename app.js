@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: "react-projects-ten-lemon.vercel.app",
   optionsSuccessStatus: 200,
-  credtials: true
+  credentials: true
 };
 app.use(cors(corsOptions));
 app.use(express.json());
