@@ -7,7 +7,7 @@ require("dotenv").config();
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`);
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
-  origin: "react-projects-ten-lemon.vercel.app",
+  origin: "https://react-projects-ten-lemon.vercel.app",
   optionsSuccessStatus: 200,
   credentials: true
 };
