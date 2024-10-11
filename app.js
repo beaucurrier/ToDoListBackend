@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const Todos = require('./models/Todo');
+const Todo = require('./models/Todo');
 const mongoose = require("mongoose");
 require("dotenv").config();
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_API_KEY}@cluster0.fw3p5.mongodb.net/`);
@@ -14,16 +14,16 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/todos", async (req, res) => {
-  const todos = await Todos.find();
+  const todos = await Todo.find();
   res.json({ todos: todos });
 });
 app.post("/add-item", async (req, res) => {
-  const newTodo = await Todos.create(req.body);
+  const newTodo = await Todo.create(req.body);
   res.json(newTodo);
 });
 app.post("/edit-item/:id", async (req, res) => {
   try {
-    const updatedTodo = await Todos.findOneAndUpdate(
+    const updatedTodo = await Todo.findOneAndUpdate(
       { _id: req.params.id },
       { $set: { text: req.body.text, completed: req.body.completed } },
       { new: true }
@@ -34,7 +34,7 @@ app.post("/edit-item/:id", async (req, res) => {
   }
 });
 app.delete("/delete-item/:id", async (req, res) => {
-  await Todos.deleteOne({ _id: req.params.id });
+  await Todo.deleteOne({ _id: req.params.id });
   res.json({ message: "todo was deleted successfully!" });
 });
 app.listen(PORT, "0.0.0.0", () => {
